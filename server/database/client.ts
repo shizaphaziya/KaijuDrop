@@ -6,7 +6,8 @@ import * as schema from './schema';
  * Initialize the native SQLite database file.
  * better-sqlite3 is used for its high performance and synchronous execution support.
  */
-const sqlite = new Database('sqlite.db');
+const dbPath = (process.env.NODE_ENV === 'test' || process.env.VITEST === 'true' || process.env.DATABASE_PATH === 'sqlite_test.db') ? 'sqlite_test.db' : 'sqlite.db';
+const sqlite = new Database(dbPath);
 
 /**
  * Drizzle ORM client configured with Better-SQLite3.

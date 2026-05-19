@@ -11,6 +11,6 @@ export default defineConfig({
   out: './drizzle',
   dialect: 'sqlite',
   dbCredentials: {
-    url: 'sqlite.db',
+    url: process.env.NODE_ENV === 'test' ? 'sqlite_test.db' : 'sqlite.db',
   },
 });

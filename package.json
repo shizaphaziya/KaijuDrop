@@ -7,7 +7,13 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "db:push:test": "NODE_ENV=test bunx drizzle-kit push",
+    "test:unit": "vitest run --dir tests/unit",
+    "test:api": "NODE_ENV=test bunx drizzle-kit push && NODE_ENV=test vitest run --dir tests/api",
+    "test:e2e": "NODE_ENV=test bunx drizzle-kit push && NODE_ENV=test playwright test",
+    "test:e2e:ui": "NODE_ENV=test bunx drizzle-kit push && NODE_ENV=test playwright test --ui",
+    "test": "bun run test:unit && bun run test:api && bun run test:e2e"
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.14.0",
@@ -25,8 +31,12 @@
     "vue-router": "^5.0.6"
   },
   "devDependencies": {
+    "@nuxt/test-utils": "^4.0.3",
+    "@playwright/test": "^1.60.0",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^25.6.2",
-    "drizzle-kit": "^0.31.10"
+    "drizzle-kit": "^0.31.10",
+    "happy-dom": "^20.9.0",
+    "vitest": "^4.1.6"
   }
 }
